@@ -1,0 +1,22 @@
+{
+  "name": "fbaroni/sf-base-bundle",
+  "license": "proprietary",
+  "type": "symfony-bundle",
+  "description": "Bundle basico para proyectos symfony",
+  "homepage": "https://github.com/fbaroni/sf-base-bundle",
+  "keywords": ["php", "symfony", "symfony2"],
+  "authors": [
+    {
+      "name": "Michael Roterman",
+      "homepage": "http://wtfz.net",
+      "email": "michael@wtfz.net"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "symfony/symfony": ">=2.7.0"
+  },
+  "autoload": {
+    "psr-4": { "Fbaroni\\Bundle\\BaseBundle\\": "" }
+  }
+}

@@ -1,0 +1,5 @@
+services:
+    base.manager:
+        class: AppBundle\Manager\Manager
+        abstract:  true
+        arguments: ['@event_dispatcher' ,'@logger' ,'@security.token_storage' ,'@session', '@knp_paginator' ]

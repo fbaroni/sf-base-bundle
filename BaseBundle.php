@@ -1,6 +1,6 @@
 <?php
 
-namespace Fbaroni\Bundles\BaseBundle;
+namespace Fbaroni\Bundle\BaseBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

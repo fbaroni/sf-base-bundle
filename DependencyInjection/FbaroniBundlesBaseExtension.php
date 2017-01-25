@@ -1,6 +1,6 @@
 <?php
 
-namespace Fbaroni\Bundles\BaseBundle\DependencyInjection;
+namespace Fbaroni\Bundle\BaseBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\Loader;
  *
  * @link http://symfony.com/doc/current/cookbook/bundles/extension.html
  */
-class FbaroniBundlesBaseExtension extends Extension
+class FbaroniBundleBaseExtension extends Extension
 {
     /**
      * {@inheritdoc}

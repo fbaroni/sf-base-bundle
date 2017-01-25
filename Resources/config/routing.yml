@@ -1,3 +1,3 @@
 fbaroni_bundles_base_homepage:
     path:     /
-    defaults: { _controller: FbaroniBundlesBaseBundle:Default:index }
+    defaults: { _controller: FbaroniBundleBaseBundle:Default:index }

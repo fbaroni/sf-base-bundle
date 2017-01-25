@@ -1,6 +1,6 @@
 <?php
 
-namespace Fbaroni\Bundles\BaseBundle\Form\Handler;
+namespace Fbaroni\Bundle\BaseBundle\Form\Handler;
 
 use AppBundle\Manager\Manager;
 use Symfony\Component\Form\Form;

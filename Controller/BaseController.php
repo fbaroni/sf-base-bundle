@@ -1,9 +1,9 @@
 <?php
 
-namespace Fbaroni\Bundles\BaseBundle\Controller;
+namespace Fbaroni\Bundle\BaseBundle\Controller;
 
-use Fbaroni\Bundles\BaseBundle\Form\Handler\FormHandler;
-use Fbaroni\Bundles\BaseBundle\Manager\Manager;
+use Fbaroni\Bundle\BaseBundle\Form\Handler\FormHandler;
+use Fbaroni\Bundle\BaseBundle\Manager\Manager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 

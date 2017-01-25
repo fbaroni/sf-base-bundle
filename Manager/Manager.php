@@ -1,6 +1,6 @@
 <?php
 
-namespace Fbaroni\Bundles\BaseBundle\Manager;
+namespace Fbaroni\Bundle\BaseBundle\Manager;
 
 use AppBundle\Repository\DoctrineEntityRepository;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;

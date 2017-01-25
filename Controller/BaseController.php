@@ -3,6 +3,7 @@
 namespace Fbaroni\Bundles\BaseBundle\Controller;
 
 use Fbaroni\Bundles\BaseBundle\Form\Handler\FormHandler;
+use Fbaroni\Bundles\BaseBundle\Manager\Manager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -138,5 +139,6 @@ abstract class BaseController extends Controller
     {
         return $this->get('security.authorization_checker')->isGranted($rol);
     }
-
 }
+
+

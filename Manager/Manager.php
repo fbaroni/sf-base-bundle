@@ -3,7 +3,6 @@
 namespace Fbaroni\Bundles\BaseBundle\Manager;
 
 use AppBundle\Repository\DoctrineEntityRepository;
-use Exception;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -64,6 +63,7 @@ abstract class Manager
     public function convertToSimpleArrayFromEntityCollection($entitiesCollection)
     {
         $simpleArray = array();
+
         foreach ($entitiesCollection as $entity) {
             $simpleArray [] = array('id' => $entity->getId(), 'label' => $entity->getNombre());
         }
@@ -77,9 +77,9 @@ abstract class Manager
     }
 
     /**
-     * @param Exception $ex
+     * @param \Exception $ex
      */
-    protected function logError(Exception $ex)
+    protected function logError(\Exception $ex)
     {
         try {
             $method = '';
@@ -91,7 +91,7 @@ abstract class Manager
                 $class = array_key_exists('class', $callers[1]) ? $callers[1]['class'] : '';
             }
             $this->logger->error('(' . $class . ' - ' . $method . '): ' . $ex->getMessage());
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $this->logger->error($ex->getMessage());
         }
     }

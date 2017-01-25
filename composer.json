@@ -14,7 +14,8 @@
   ],
   "require": {
     "php": ">=5.4.0",
-    "symfony/symfony": ">=2.7.0"
+    "symfony/symfony": ">=2.7.0",
+    "knp_paginator" : "dev-master"
   },
   "autoload": {
     "psr-4": { "Fbaroni\\Bundle\\BaseBundle\\": "" }

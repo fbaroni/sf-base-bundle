@@ -3,3 +3,15 @@ services:
         class: AppBundle\Manager\Manager
         abstract:  true
         arguments: ['@event_dispatcher' ,'@logger' ,'@security.token_storage' ,'@session', '@knp_paginator' ]
+
+    base.doctrine_repository:
+        class: AppBundle\Repository\DoctrineEntityRepository
+        abstract:  true
+        arguments: ['@doctrine.orm.default_entity_manager']
+
+    base.form_handler:
+        class: AppBundle\Form\Handler\FormHandler
+        abstract:  true
+        calls:
+            - [setRequest, ['@request']]
+            - [setValidator, ['@validator']]

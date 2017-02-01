@@ -24,7 +24,7 @@ abstract class BaseController extends Controller
     protected function setMensajeFlashError($mensaje)
     {
         $this->get('session')->getFlashBag()->add(
-                'error', $mensaje
+            'error', $mensaje
         );
     }
 
@@ -38,7 +38,7 @@ abstract class BaseController extends Controller
     protected function setMensajeFlashExito($mensaje)
     {
         $this->get('session')->getFlashBag()->add(
-                'success', $mensaje
+            'success', $mensaje
         );
     }
 
@@ -87,7 +87,7 @@ abstract class BaseController extends Controller
     protected function checkUserLogged()
     {
         if (!$this->get('security.token_storage')->getToken() ||
-                $this->obtenerUsuarioLogueado() == 'anon.'
+            $this->obtenerUsuarioLogueado() == 'anon.'
         ) {
             return false;
         }
@@ -121,11 +121,11 @@ abstract class BaseController extends Controller
     protected function returnJSONStandardResponseFromArray($status, $data, $message = '')
     {
         $jsonData = json_encode(
-                [
-                    'status' => $status,
-                    'data' => $data,
-                    'message' => $message,
-                ]
+            [
+                'status' => $status,
+                'data' => $data,
+                'message' => $message,
+            ]
         );
 
         $response = new Response();
@@ -138,6 +138,89 @@ abstract class BaseController extends Controller
     protected function hasRole($rol)
     {
         return $this->get('security.authorization_checker')->isGranted($rol);
+    }
+
+    protected function redirectToIndexRoute(array $parameters = array(), $status = 302)
+    {
+        return $this->redirectToRoute($this->getIndexRoute(), $parameters, $status);
+    }
+
+    /**
+     * @param Request $request
+     * @param $prefix
+     * @return bool|\Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function redirectToIndexRouteWithFilters(Request $request)
+    {
+        $prefix = $this->getIndexRoute();
+        //Redireccionar al listado ordenado en caso de que en sesion este guardado un orden y no haya sido seteado
+        // uno nuevo en request
+        $sessionSortKey = $prefix . 'sort';
+        $sessionDirectionKey = $prefix . 'direction';
+        if ($request->get('sort') == '' && $this->get('session')->get($sessionSortKey) != '') {
+            return $this->redirectToIndexRoute([
+                'request' => $request,
+                'sort' => $this->get('session')->get($sessionSortKey),
+                'direction' => $this->get('session')->get($sessionDirectionKey)
+            ], 307);
+        } elseif ($request->get('sort') != '') {
+            $this->get('session')->set($sessionDirectionKey, $request->get('direction'));
+            $this->get('session')->set($sessionSortKey, $request->get('sort'));
+        }
+        return false;
+    }
+
+    protected function generateJSONErrorResponse($message = null)
+    {
+        $status = 'error';
+        $mensaje = $message ? $message : 'Ocurrió un error.';
+        $data = [];
+        return $this->returnJSONStandardResponseFromArray($status, $data, $mensaje);
+    }
+
+    protected function generateJSONResponse($data, $mensaje = '')
+    {
+        return $this->returnJSONStandardResponseFromArray('OK', $data, $mensaje);
+    }
+
+    public function ajaxSetVariableSesionAction($nombre, $valor)
+    {
+        try {
+            if ($this->get('request')->isXmlHttpRequest()) {
+                $this->get('request')->getSession()->set($nombre, $valor);
+                return $this->generateJSONResponse([], 'Se cargo la variable correctamente.');
+            }
+        } catch (\Exception $exception) {
+            return $this->generateJSONErrorResponse();
+        }
+    }
+
+    protected function obtenerClaveFiltroSesion()
+    {
+        return $this->getIndexRoute() . 'buscar';
+    }
+
+    protected function obtenerTerminoABuscar($terminoBuscado)
+    {
+        $filtroSessionKey = $this->obtenerClaveFiltroSesion();
+        if ($terminoBuscado != '') {
+            $this->get('session')->set($filtroSessionKey, $terminoBuscado);
+            return $terminoBuscado;
+        } elseif ($this->get('session')->get($filtroSessionKey) != '') {
+            $this->limpiarElementoFiltroSesion($terminoBuscado, $filtroSessionKey);
+            return $this->get('session')->get($filtroSessionKey);
+        } else {
+            return '';
+        }
+    }
+
+    protected function limpiarElementoFiltroSesion($terminoBuscado, $filtroSessionKey)
+    {
+    //El elemento llega vacío lo elimino como filtro
+        if (($terminoBuscado == '' || $terminoBuscado == 0) && $this->get('request')->get('send')) {
+            $this->get('session')->set($filtroSessionKey, $terminoBuscado);
+            $filtro = $terminoBuscado;
+        }
     }
 }
 

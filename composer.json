@@ -1,15 +1,13 @@
 {
   "name": "fbaroni/sf-base-bundle",
-  "license": "proprietary",
+  "license": "MIT",
   "type": "symfony-bundle",
   "description": "Bundle basico para proyectos symfony",
-  "homepage": "https://github.com/fbaroni/sf-base-bundle",
   "keywords": ["php", "symfony", "symfony2"],
   "authors": [
     {
-      "name": "Michael Roterman",
-      "homepage": "http://wtfz.net",
-      "email": "michael@wtfz.net"
+      "name": "Federico Baroni",
+      "email": "fbaroni@gmail.com"
     }
   ],
   "require": {
@@ -17,8 +15,8 @@
     "symfony/symfony": ">=2.7.0",
     "knplabs/knp-paginator-bundle": "^2.5"
   },
-  "minimun-stability" : "dev", 
   "autoload": {
     "psr-4": { "Fbaroni\\Bundle\\BaseBundle\\": "" }
-  }
+  },
+  "minimun-stability" : "dev"
 }

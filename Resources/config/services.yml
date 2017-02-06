@@ -1,16 +1,16 @@
 services:
-    base.manager:
-        class: AppBundle\Manager\Manager
+    fbaroni.base.manager:
+        class: Fbaroni\Bundle\BaseBundle\Manager\Manager
         abstract:  true
         arguments: ['@event_dispatcher' ,'@logger' ,'@security.token_storage' ,'@session', '@knp_paginator' ]
 
-    base.doctrine_repository:
-        class: AppBundle\Repository\DoctrineEntityRepository
+    fbaroni.base.doctrine_repository:
+        class: Fbaroni\Bundle\BaseBundle\Repository\DoctrineEntityRepository
         abstract:  true
         arguments: ['@doctrine.orm.default_entity_manager']
 
-    base.form_handler:
-        class: AppBundle\Form\Handler\FormHandler
+    fbaroni.base.form_handler:
+        class: Fbaroni\Bundle\BaseBundle\Form\Handler\FormHandler
         abstract:  true
         calls:
             - [setRequest, ['@request']]

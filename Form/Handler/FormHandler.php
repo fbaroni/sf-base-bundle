@@ -2,7 +2,7 @@
 
 namespace Fbaroni\Bundle\BaseBundle\Form\Handler;
 
-use AppBundle\Manager\Manager;
+use Fbaroni\Bundle\BaseBundle\Manager\Manager;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
@@ -114,3 +114,4 @@ abstract class FormHandler
         $this->manager = $manager;
     }
 }
+

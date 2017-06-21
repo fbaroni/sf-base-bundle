@@ -22,13 +22,13 @@ abstract class Manager
      * Manager constructor.
      *
      * @param EventDispatcherInterface $eventDispatcher
-     * @param LoggerInterface $logger
+     * @param $logger
      * @param TokenStorageInterface $securityTokenStorage
      * @param Session $session
      * @param $paginator
      */
     public function __construct(EventDispatcherInterface $eventDispatcher,
-                                LoggerInterface $logger,
+                                $logger,
                                 TokenStorageInterface $securityTokenStorage,
                                 Session $session,
                                 $paginator)

@@ -5,6 +5,7 @@ namespace Fbaroni\Bundle\BaseBundle\Controller;
 use Fbaroni\Bundle\BaseBundle\Form\Handler\FormHandler;
 use Fbaroni\Bundle\BaseBundle\Manager\Manager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 abstract class BaseController extends Controller

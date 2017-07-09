@@ -21,7 +21,7 @@ abstract class DoctrineEntityRepository implements RepositoryInterface
         $this->entityManager = $entityManager;
     }
 
-    abstract protected function getEntityName();
+    abstract public function getEntityName();
 
     /**
      * @return EntityManager

@@ -2,6 +2,7 @@
 
 namespace Fbaroni\Bundle\BaseBundle\Manager;
 
+use AppBundle\Repository\RepositoryInterface;
 use Fbaroni\Bundle\BaseBundle\Repository\DoctrineEntityRepository;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -148,9 +149,18 @@ abstract class Manager
     }
 
     /**
-     * @return DoctrineEntityRepository
+     * @return RepositoryInterface
      */
     public function getRepositorio()
+    {
+        return $this->repositorio;
+    }
+
+    /**
+     * @param RepositoryInterface $repository
+     * @return mixed
+     */
+    public function setRepositorio(RepositoryInterface $repository)
     {
         return $this->repositorio;
     }

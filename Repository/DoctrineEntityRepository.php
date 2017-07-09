@@ -2,9 +2,10 @@
 
 namespace Fbaroni\Bundle\BaseBundle\Repository;
 
+use AppBundle\Repository\RepositoryInterface;
 use Doctrine\ORM\EntityManager;
 
-abstract class DoctrineEntityRepository
+abstract class DoctrineEntityRepository implements RepositoryInterface
 {
     /*
      * Inyección de dependencias

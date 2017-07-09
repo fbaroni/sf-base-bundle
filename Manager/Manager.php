@@ -2,8 +2,7 @@
 
 namespace Fbaroni\Bundle\BaseBundle\Manager;
 
-use AppBundle\Repository\RepositoryInterface;
-use Fbaroni\Bundle\BaseBundle\Repository\DoctrineEntityRepository;
+use Fbaroni\Bundle\BaseBundle\Repository\RepositoryInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;

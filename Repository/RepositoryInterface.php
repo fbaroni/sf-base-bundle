@@ -1,5 +1,5 @@
 <?php
-namespace AppBundle\Repository;
+namespace Fbaroni\Bundle\BaseBundle\Repository;
 
 interface RepositoryInterface
 {

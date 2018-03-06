@@ -217,12 +217,36 @@ abstract class BaseController extends Controller
 
     protected function limpiarElementoFiltroSesion($terminoBuscado, $filtroSessionKey)
     {
-    //El elemento llega vacío lo elimino como filtro
+        //El elemento llega vacío lo elimino como filtro
         if (($terminoBuscado == '' || $terminoBuscado == 0) && $this->get('request')->get('send')) {
             $this->get('session')->set($filtroSessionKey, $terminoBuscado);
             $filtro = $terminoBuscado;
         }
     }
+
+    protected function getElementoRequestOSession($clave)
+    {
+        $filtroRequest = $this->getRequest()->request->get($clave);
+        if (!is_array($filtroRequest)) {
+            $filtroRequest = trim($filtroRequest);
+        }
+        $sessionKey = $this->getIndexRoute() . $clave;
+        $filtro = $filtroRequest;
+        if ($filtro != '') {
+            $filtro = $this->get('session')->set($sessionKey, $filtroRequest);
+        }
+        if ($filtro == '' && $this->get('session')->get($sessionKey)) {
+            $filtro = $this->get('session')->get($sessionKey);
+        }
+        //El elemento llega vacío lo elimino como filtro
+        if (($filtroRequest == '' || $filtroRequest == 0) && $this->getRequest()->request->get('send')) {
+            $this->get('session')->set($sessionKey, $filtroRequest);
+            $filtro = $filtroRequest;
+        }
+        return $filtro;
+    }
+
+
 }
 
 

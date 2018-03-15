@@ -224,29 +224,31 @@ abstract class BaseController extends Controller
         }
     }
 
-    protected function getElementoRequestOSession($clave)
+    protected function getElementoRequestOSession(Request $request, $clave)
     {
-        $filtroRequest = $this->get('request')->request->get($clave);
-
+        $filtroRequest = $request->request->get($clave);
         if (!is_array($filtroRequest)) {
             $filtroRequest = trim($filtroRequest);
         }
+
         $sessionKey = $this->getIndexRoute() . $clave;
         $filtro = $filtroRequest;
         if ($filtro != '') {
-            $filtro = $this->get('session')->set($sessionKey, $filtroRequest);
+            $this->get('session')->set($sessionKey, $filtroRequest);
         }
-        if ($filtro == '' && $this->get('session')->get($sessionKey)) {
+
+        if (!$request->request->has($clave) && $this->get('session')->get($sessionKey)) {
             $filtro = $this->get('session')->get($sessionKey);
         }
+
         //El elemento llega vacío lo elimino como filtro
-        if (($filtroRequest == '' || $filtroRequest == 0) && $this->getRequest()->request->get('send')) {
+        if (($filtro == '' || $filtro == 0)) {
             $this->get('session')->set($sessionKey, $filtroRequest);
             $filtro = $filtroRequest;
         }
+
         return $filtro;
     }
-
 
 }
 
